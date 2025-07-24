@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="DataSource">
+      <DataSourceReference>DataSource</DataSourceReference>
+      <rd:DataSourceID>c45d39e1-5eec-4b93-8f5e-f567cc2d4abc</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <Body>
+    <ReportItems>
+      <Textbox Name="Title">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>SALES RECEIPT</Value>
+                <Style>
+                  <FontSize>10pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <Top>0in</Top>
+        <Left>0in</Left>
+        <Width>2.9in</Width>
+        <Height>0.3in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <TextAlign>Center</TextAlign>
+        </Style>
+      </Textbox>
+      <Textbox Name="InvoiceInfo">
+        <CanGrow>true</CanGrow>
+        <Value>= "Invoice No: " &amp; Fields!No_.Value &amp; vbcrlf &amp; "Date: " &amp; Format(Fields!Posting_Date.Value, "dd/MM/yyyy")</Value>
+        <Top>0.3in</Top>
+        <Left>0in</Left>
+        <Width>2.9in</Width>
+        <Height>0.4in</Height>
+        <Style>
+          <FontSize>8pt</FontSize>
+        </Style>
+      </Textbox>
+      <Table Name="LineTable">
+        <DataSetName>DataSet_Result</DataSetName>
+        <Top>0.8in</Top>
+        <Left>0in</Left>
+        <Width>2.9in</Width>
+        <Height>1.2in</Height>
+        <Style>
+          <FontSize>7pt</FontSize>
+        </Style>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <Height>0.2in</Height>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="DescHeader">
+                      <Value>Item</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="QtyHeader">
+                      <Value>Qty</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="PriceHeader">
+                      <Value>Price</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="AmountHeader">
+                      <Value>Amount</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <Height>0.2in</Height>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Desc">
+                      <Value>=Fields!Description.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Qty">
+                      <Value>=Fields!Quantity.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Price">
+                      <Value>=Fields!Unit_Price.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="Amount">
+                      <Value>=Fields!Line_Amount.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <TableColumns>
+          <TableColumn>
+            <Width>1.2in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.4in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.6in</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>0.7in</Width>
+          </TableColumn>
+        </TableColumns>
+      </Table>
+      <Textbox Name="Total">
+        <CanGrow>true</CanGrow>
+        <Value>= "TOTAL: " &amp; Format(Fields!Total_Amount_Incl_VAT.Value, "C2")</Value>
+        <Top>2.2in</Top>
+        <Left>0in</Left>
+        <Width>2.9in</Width>
+        <Height>0.2in</Height>
+        <Style>
+          <FontWeight>Bold</FontWeight>
+          <FontSize>8pt</FontSize>
+          <TextAlign>Right</TextAlign>
+        </Style>
+      </Textbox>
+      <Textbox Name="Footer">
+        <CanGrow>true</CanGrow>
+        <Value>Thank you for your purchase!</Value>
+        <Top>2.5in</Top>
+        <Left>0in</Left>
+        <Width>2.9in</Width>
+        <Height>0.3in</Height>
+        <Style>
+          <FontSize>7pt</FontSize>
+          <TextAlign>Center</TextAlign>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>3in</Height>
+  </Body>
+  <Width>2.9in</Width>
+  <Page>
+    <PageHeight>11in</PageHeight>
+    <PageWidth>2.9in</PageWidth>
+    <LeftMargin>0in</LeftMargin>
+    <RightMargin>0in</RightMargin>
+    <TopMargin>0in</TopMargin>
+    <BottomMargin>0in</BottomMargin>
+  </Page>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="SalesInvNo">
+          <DataField>SalesInvNo</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>
